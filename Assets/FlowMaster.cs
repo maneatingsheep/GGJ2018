@@ -7,15 +7,13 @@ public class FlowMaster : MonoBehaviour {
 
     public GameplayMaster GameplayMasterRef;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Start() {
+        Init();
+    }
+
+    public void Init() {
+
+    }
 
     public void InitMission() {
         GameplayMasterRef.InitMission();
