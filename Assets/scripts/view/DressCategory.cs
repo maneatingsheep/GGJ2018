@@ -11,6 +11,8 @@ public class DressCategory {
 [Serializable]
 public class DressContainer {
 
-    public SpriteRenderer Container;
+    public SpriteRenderer FixedContainer;
+    public SpriteRenderer ChangingContainer;
+    public Sprite FixedContent;
     public List<Sprite> Contents;
 }
