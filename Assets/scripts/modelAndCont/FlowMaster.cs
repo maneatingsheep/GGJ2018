@@ -8,8 +8,9 @@ public class FlowMaster : MonoBehaviour {
 
     public Canvas TitleCanvasRef;
     public Canvas MissionCanvasRef;
+    public Canvas GameCanvasRef;
 
-    
+
 
     public GameplayMaster GameplayMasterRef;
 
@@ -38,28 +39,39 @@ public class FlowMaster : MonoBehaviour {
                 case GameStates.Title:
                     TitleCanvasRef.gameObject.SetActive(true);
                     MissionCanvasRef.gameObject.SetActive(false);
+                    GameCanvasRef.gameObject.SetActive(false);
                     break;
                 case GameStates.MissionIntro:
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
+                    GameCanvasRef.gameObject.SetActive(false);
+
                     break;
                 case GameStates.MissionBrief:
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(true);
+                    GameCanvasRef.gameObject.SetActive(false);
+
                     break;
                 case GameStates.Game:
                     GameplayMasterRef.InitMission();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
+                    GameCanvasRef.gameObject.SetActive(true);
+
                     break;
                 case GameStates.Conclusion:
                     GameplayMasterRef.EndMission();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
+                    GameCanvasRef.gameObject.SetActive(false);
+
                     break;
                 case GameStates.GameOver:
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
+                    GameCanvasRef.gameObject.SetActive(false);
+
                     break;
 
             }
@@ -75,7 +87,7 @@ public class FlowMaster : MonoBehaviour {
 
     public void StartMission() {
         State = GameStates.Game;
-        Invoke("EndMission", 10);
+        //Invoke("EndMission", 10);
     }
 
     public void EndMission() {

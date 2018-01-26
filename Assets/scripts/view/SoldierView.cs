@@ -27,7 +27,7 @@ public class SoldierView : MonoBehaviour {
         }
     }
 
-    private void DressChanged(int category, int from, int index) {
+    private void DressChanged() {
         for (int i = 0; i < GameplayMasterRef.CurrentIndexSet.Count; i++) {
             int item = GameplayMasterRef.CurrentMissionDressSet[i][GameplayMasterRef.CurrentIndexSet[i]];
 

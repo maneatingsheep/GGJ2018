@@ -10,15 +10,15 @@ public class GameplayMaster : MonoBehaviour {
     public List<List<int>> CurrentMissionDressSet;
     public List<int> CurrentIndexSet; //the right one is at 0
 
-    public delegate void DressChengedDel(int category, int from, int index);
-    public event DressChengedDel EDressChanged;
+    //public delegate void DressChengedDel();
+    public event Action EDressChanged;
 
     public event Action<bool> EStartLevel;
 
 
     public void Init() {
         for (int i = 0; i < CurrentIndexSet.Count; i++) {
-            EDressChanged(i, -1, 0);
+            EDressChanged();
         }
     }
 
@@ -53,8 +53,21 @@ public class GameplayMaster : MonoBehaviour {
         EStartLevel(false);
     }
 
+
+    public void SetDress(bool isUp, int cat) {
+        if (isUp) {
+            CurrentIndexSet[cat] = (CurrentIndexSet[cat] + 1) % CurrentMissionDressSet[cat].Count;
+
+        } else {
+            CurrentIndexSet[cat] = (CurrentIndexSet[cat] - 1 + CurrentMissionDressSet[cat].Count) % CurrentMissionDressSet[cat].Count;
+
+        }
+        DressUp();
+    }
+
+
     public void DressUp() {
-        EDressChanged(0, 0, 0);
+        EDressChanged();
     }
 
     
