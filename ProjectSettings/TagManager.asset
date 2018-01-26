@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: fixed
+    uniqueID: 1194612481
+    locked: 0
+  - name: dynamic
+    uniqueID: 2439953055
+    locked: 0
+  - name: pivots
+    uniqueID: 4250578803
+    locked: 0
