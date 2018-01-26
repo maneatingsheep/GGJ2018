@@ -21,12 +21,30 @@ public class GameplayMaster : MonoBehaviour {
     public void InitMission() {
         //MissionDressSet; 
         //CurrentIndexSet randomize non zero
+        CurrentIndexSet = new List<int>();
+
+        CurrentMissionDressSet = new List<List<int>>();
+
+
+        for (int i = 0; i < TotalItemsPerCat.Count; i++) {
+            CurrentMissionDressSet.Add(new List<int>());
+            for (int j = 0; j < 4; j++) {
+                CurrentMissionDressSet[i].Add(j);
+            }
+
+            int rInd = Random.Range(0, 4);
+
+            CurrentIndexSet.Add(rInd);
+        }
+
+        
+
         DressUp();
 
     }
 
     public void DressUp() {
-
+        EDressChanged(0, 0, 0);
     }
 
 
