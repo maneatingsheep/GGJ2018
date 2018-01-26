@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ClosetView : MonoBehaviour {
 
+    public List<DressCategory> Cats;
+
     public void Init() {
         
     }
