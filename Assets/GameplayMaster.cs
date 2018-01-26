@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameplayMaster : MonoBehaviour {
 
+    public List<int> TotalItemsPerCat;
 
-    public List<List<int>> MissionDressSet;
+    public List<List<int>> CurrentMissionDressSet;
     public List<int> CurrentIndexSet; //the right one is at 0
 
     public delegate void DressChengedDel(int category, int from, int index);
