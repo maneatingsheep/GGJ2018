@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class GameplayMaster : MonoBehaviour {
 
     public delegate void DressChengedDel(int category, int from, int index);
     public event DressChengedDel EDressChanged;
+
+    public event Action<bool> EStartLevel;
+
 
     public void Init() {
         for (int i = 0; i < CurrentIndexSet.Count; i++) {
@@ -32,7 +36,7 @@ public class GameplayMaster : MonoBehaviour {
                 CurrentMissionDressSet[i].Add(j);
             }
 
-            int rInd = Random.Range(0, 4);
+            int rInd = UnityEngine.Random.Range(0, 4);
 
             CurrentIndexSet.Add(rInd);
         }
@@ -41,11 +45,17 @@ public class GameplayMaster : MonoBehaviour {
 
         DressUp();
 
+        EStartLevel(true);
+
+    }
+
+    internal void EndMission() {
+        EStartLevel(false);
     }
 
     public void DressUp() {
         EDressChanged(0, 0, 0);
     }
 
-
+    
 }
