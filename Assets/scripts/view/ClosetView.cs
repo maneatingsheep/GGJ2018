@@ -10,6 +10,8 @@ public class ClosetView : MonoBehaviour {
     public AudioSource switchSrc;
     public AudioClip[] SwitchSounds;
 
+    public Button[] Buttons;
+    private int _clothCategory = 0;
 
     public void Init() {
         Buttons[_clothCategory].Select();
