@@ -20,6 +20,10 @@ public class FlowMaster : MonoBehaviour {
     public ParallaxView ParallaxViewRef;
     public TimerView TimerViewRef;
 
+    public AudioClip MusicMenu;
+    public AudioClip MusicGame;
+    public AudioSource MusicPlayer;
+
     private GameStates _state;
 
     private void Start() {
@@ -48,6 +52,9 @@ public class FlowMaster : MonoBehaviour {
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(false);
                     OverCanvasRef.gameObject.SetActive(false);
+                    MusicPlayer.Stop();
+                    MusicPlayer.clip = MusicMenu;
+                    MusicPlayer.Play();
                     break;
                 case GameStates.MissionIntro:
                     TitleCanvasRef.gameObject.SetActive(false);
@@ -71,6 +78,10 @@ public class FlowMaster : MonoBehaviour {
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(true);
                     OverCanvasRef.gameObject.SetActive(false);
+
+                    MusicPlayer.Stop();
+                    MusicPlayer.clip = MusicGame;
+                    MusicPlayer.Play();
 
                     Invoke("EndMission", 10);
                     break;
