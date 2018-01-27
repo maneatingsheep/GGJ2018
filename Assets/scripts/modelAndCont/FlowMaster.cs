@@ -16,6 +16,8 @@ public class FlowMaster : MonoBehaviour {
 
     public ClosetView ClosetViewRef;
     public SoldierView SoldierViewRef;
+    public ParallaxView ParallaxViewRef;
+    public TimerView TimerViewRef;
 
     private GameStates _state;
 
@@ -27,6 +29,8 @@ public class FlowMaster : MonoBehaviour {
     public void Init() {
         ClosetViewRef.Init();
         SoldierViewRef.Init();
+        ParallaxViewRef.Init();
+        TimerViewRef.Init();
 
         State = GameStates.Title;
     }
@@ -57,6 +61,8 @@ public class FlowMaster : MonoBehaviour {
                 case GameStates.Game:
                     GameplayMasterRef.InitMission();
                     SoldierViewRef.StartGame();
+                    TimerViewRef.Play();
+                    ParallaxViewRef.Play();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(true);
