@@ -98,6 +98,17 @@ public class ParallaxView : MonoBehaviour
 
     public void Init()
     {
+        for (int i = 0; i < _parallaxObjects.Count; i++) {
+            Destroy(_parallaxObjects[i].gameObject);
+            _parallaxObjects.Clear();
+        }
+
+        for (int i = 0; i < ParallaxContainers.Length; i++) {
+            ParallaxContainers[i].CurrentAmount = 0;
+            ParallaxContainers[i].TimeUntilNextSpwan = ParallaxContainers[i].SpawnSpeed;
+        }
+
+        isStarted = false;
     }
 
     public void Play()

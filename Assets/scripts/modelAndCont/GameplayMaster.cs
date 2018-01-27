@@ -39,7 +39,9 @@ public class GameplayMaster : MonoBehaviour {
                 CurrentMissionDressSet[i].Add(j);
             }
 
-            int rInd = UnityEngine.Random.Range(0, TotalItemsPerCat[i]);
+            CurrentMissionDressSet[i].Add(Missions[CurrentMission].MissionItems[i]);
+
+            int rInd = UnityEngine.Random.Range(0, CurrentMissionDressSet[i].Count);
 
             CurrentIndexSet.Add(rInd);
         }
@@ -56,10 +58,10 @@ public class GameplayMaster : MonoBehaviour {
 
     public void SetDress(bool isUp, int cat) {
         if (isUp) {
-            CurrentIndexSet[cat] = (CurrentIndexSet[cat] + 1) % CurrentMissionDressSet[cat].Count;
+            CurrentIndexSet[cat] = (CurrentIndexSet[cat] + 1) % (CurrentMissionDressSet[cat].Count);
 
         } else {
-            CurrentIndexSet[cat] = (CurrentIndexSet[cat] - 1 + CurrentMissionDressSet[cat].Count) % CurrentMissionDressSet[cat].Count;
+            CurrentIndexSet[cat] = (CurrentIndexSet[cat] - 1 + CurrentMissionDressSet[cat].Count) % (CurrentMissionDressSet[cat].Count);
 
         }
         DressUp();
