@@ -12,7 +12,9 @@ public class DressCategory {
 public class DressContainer {
 
     public SpriteRenderer FixedContainer;
+    public SpriteRenderer ConcFixedContainer;
     public SpriteRenderer ChangingContainer;
+    public SpriteRenderer ConcChangingContainer;
     public Sprite FixedContent;
     public List<Sprite> Contents;
 }

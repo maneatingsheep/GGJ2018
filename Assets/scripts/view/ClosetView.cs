@@ -7,8 +7,9 @@ public class ClosetView : MonoBehaviour {
 
     public GameplayMaster GameplayMasterRef;
 
-    private int _clothCategory = 0;
-    public Button[] Buttons;
+    public AudioSource switchSrc;
+    public AudioClip[] SwitchSounds;
+
 
     public void Init() {
         Buttons[_clothCategory].Select();
@@ -17,11 +18,14 @@ public class ClosetView : MonoBehaviour {
     public void IncDress() {
         GameplayMasterRef.SetDress(true, _clothCategory);
         Buttons[_clothCategory].Select();
+        switchSrc.PlayOneShot(SwitchSounds[Random.Range(0, SwitchSounds.Length)]);
     }
+
 
     public void DecDress() {
         GameplayMasterRef.SetDress(false, _clothCategory);
         Buttons[_clothCategory].Select();
+        switchSrc.PlayOneShot(SwitchSounds[Random.Range(0, SwitchSounds.Length)]);
     }
 
     public void OnClothCategoryChange(int clothCategory)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoldierView : MonoBehaviour {
 
@@ -13,11 +14,17 @@ public class SoldierView : MonoBehaviour {
     public Animator ClosetAnim;
     public Animator PlaneAnim;
 
+    public GameObject ConclusionGfx;
+
+    public Text BriefText;
+
     public void Init() {
         GameplayMasterRef.EDressChanged += DressChanged;
     }
 
     public void PlayBrief() {
+        
+        BriefText.text = "Mission Brief: " + GameplayMasterRef.Missions[GameplayMasterRef.CurrentMission].MissionText;
         PlaneAnim.SetTrigger("in");
         PlaneAnim.SetTrigger("in");
     }
@@ -35,9 +42,19 @@ public class SoldierView : MonoBehaviour {
         ClosetAnim.SetTrigger("in");
     }
 
+    internal void Reset() {
+        ConclusionGfx.gameObject.SetActive(false);
+    }
+
     public void EndGame() {
         SoldierAnim.SetTrigger("out");
         ClosetAnim.SetTrigger("out");
+
+        Invoke("ShowConclusion", 4);
+    }
+
+    public void ShowConclusion() {
+        ConclusionGfx.gameObject.SetActive(true);
     }
 
     private void DressChanged() {
@@ -46,7 +63,9 @@ public class SoldierView : MonoBehaviour {
 
             for (int j = 0; j < Cats[i].Containers.Count; j++) {
                 Cats[i].Containers[j].FixedContainer.sprite = Cats[i].Containers[j].FixedContent;
+                Cats[i].Containers[j].ConcFixedContainer.sprite = Cats[i].Containers[j].FixedContent;
                 Cats[i].Containers[j].ChangingContainer.sprite = Cats[i].Containers[j].Contents[item];
+                Cats[i].Containers[j].ConcChangingContainer.sprite = Cats[i].Containers[j].Contents[item];
             }
             
         }

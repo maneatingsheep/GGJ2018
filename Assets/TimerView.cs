@@ -35,7 +35,6 @@ public class TimerView : MonoBehaviour {
     private void ReduceTimer()
     {
         TimeLeft--;
-        UnityEngine.Debug.Log(TimeLeft);
         Text.text = TimeLeft > 9 ? TimeLeft.ToString() : "0" + TimeLeft.ToString();
         if (TimeLeft == 0)
         {

@@ -9,6 +9,7 @@ public class FlowMaster : MonoBehaviour {
     public Canvas TitleCanvasRef;
     public Canvas MissionCanvasRef;
     public Canvas GameCanvasRef;
+    public Canvas OverCanvasRef;
 
 
 
@@ -18,6 +19,10 @@ public class FlowMaster : MonoBehaviour {
     public SoldierView SoldierViewRef;
     public ParallaxView ParallaxViewRef;
     public TimerView TimerViewRef;
+
+    public AudioClip MusicMenu;
+    public AudioClip MusicGame;
+    public AudioSource MusicPlayer;
 
     private GameStates _state;
 
@@ -41,22 +46,28 @@ public class FlowMaster : MonoBehaviour {
             _state = value;
             switch (_state) {
                 case GameStates.Title:
+                    ParallaxViewRef.Init();
+                    SoldierViewRef.Reset();
                     TitleCanvasRef.gameObject.SetActive(true);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(false);
+                    OverCanvasRef.gameObject.SetActive(false);
+                    MusicPlayer.Stop();
+                    MusicPlayer.clip = MusicMenu;
+                    MusicPlayer.Play();
                     break;
                 case GameStates.MissionIntro:
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(false);
-
+                    OverCanvasRef.gameObject.SetActive(false);
                     break;
                 case GameStates.MissionBrief:
                     SoldierViewRef.PlayBrief();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(true);
                     GameCanvasRef.gameObject.SetActive(false);
-
+                    OverCanvasRef.gameObject.SetActive(false);
                     break;
                 case GameStates.Game:
                     GameplayMasterRef.InitMission();
@@ -66,27 +77,36 @@ public class FlowMaster : MonoBehaviour {
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(true);
+                    OverCanvasRef.gameObject.SetActive(false);
 
+                    MusicPlayer.Stop();
+                    MusicPlayer.clip = MusicGame;
+                    MusicPlayer.Play();
+
+                    Invoke("EndMission", 10);
                     break;
                 case GameStates.Conclusion:
                     SoldierViewRef.EndGame();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(false);
+                    OverCanvasRef.gameObject.SetActive(false);
 
+                    GameplayMasterRef.CurrentMission = (GameplayMasterRef.CurrentMission + 1) % GameplayMasterRef.Missions.Length;
+                    Invoke("ConcludeMission", 6);
                     break;
                 case GameStates.GameOver:
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(false);
-
+                    OverCanvasRef.gameObject.SetActive(true);
                     break;
 
             }
         }
         get {
             return _state;
-                }
+        }
     }
 
     public void GotoMission() {
@@ -95,11 +115,17 @@ public class FlowMaster : MonoBehaviour {
 
     public void StartMission() {
         State = GameStates.Game;
-        Invoke("EndMission", 10);
     }
 
     public void EndMission() {
         State = GameStates.Conclusion;
     }
 
+    public void ConcludeMission() {
+        State = GameStates.GameOver;
+    }
+
+    public void Restart() {
+        State = GameStates.Title;
+    }
 }
