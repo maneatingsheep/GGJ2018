@@ -41,6 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: city
+    uniqueID: 2427756071
+    locked: 0
+  - name: cloudsBG
+    uniqueID: 3386045695
+    locked: 0
   - name: fixed
     uniqueID: 1194612481
     locked: 0
@@ -49,4 +55,7 @@ TagManager:
     locked: 0
   - name: pivots
     uniqueID: 4250578803
+    locked: 0
+  - name: cloudsFront
+    uniqueID: 1477660091
     locked: 0

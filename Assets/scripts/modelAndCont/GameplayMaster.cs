@@ -12,8 +12,7 @@ public class GameplayMaster : MonoBehaviour {
 
     //public delegate void DressChengedDel();
     public event Action EDressChanged;
-
-    public event Action<bool> EStartLevel;
+    
 
 
     public void Init() {
@@ -32,11 +31,11 @@ public class GameplayMaster : MonoBehaviour {
 
         for (int i = 0; i < TotalItemsPerCat.Count; i++) {
             CurrentMissionDressSet.Add(new List<int>());
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j < TotalItemsPerCat[i]; j++) {
                 CurrentMissionDressSet[i].Add(j);
             }
 
-            int rInd = UnityEngine.Random.Range(0, 4);
+            int rInd = UnityEngine.Random.Range(0, TotalItemsPerCat[i]);
 
             CurrentIndexSet.Add(rInd);
         }
@@ -45,13 +44,10 @@ public class GameplayMaster : MonoBehaviour {
 
         DressUp();
 
-        EStartLevel(true);
 
     }
 
-    internal void EndMission() {
-        EStartLevel(false);
-    }
+    
 
 
     public void SetDress(bool isUp, int cat) {
