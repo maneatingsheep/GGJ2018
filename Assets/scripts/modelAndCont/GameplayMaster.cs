@@ -12,8 +12,7 @@ public class GameplayMaster : MonoBehaviour {
 
     //public delegate void DressChengedDel();
     public event Action EDressChanged;
-
-    public event Action<bool> EStartLevel;
+    
 
 
     public void Init() {
@@ -45,13 +44,10 @@ public class GameplayMaster : MonoBehaviour {
 
         DressUp();
 
-        EStartLevel(true);
 
     }
 
-    internal void EndMission() {
-        EStartLevel(false);
-    }
+    
 
 
     public void SetDress(bool isUp, int cat) {

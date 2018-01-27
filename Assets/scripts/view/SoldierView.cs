@@ -11,20 +11,34 @@ public class SoldierView : MonoBehaviour {
 
     public Animator SoldierAnim;
     public Animator ClosetAnim;
+    public Animator PlaneAnim;
 
     public void Init() {
         GameplayMasterRef.EDressChanged += DressChanged;
-        GameplayMasterRef.EStartLevel += Play;
     }
 
-    private void Play(bool isStart) {
-        if (isStart) {
-            SoldierAnim.SetTrigger("in");
-            ClosetAnim.SetTrigger("in");
-        } else {
-            SoldierAnim.SetTrigger("out");
-            ClosetAnim.SetTrigger("out");
-        }
+    public void PlayBrief() {
+        PlaneAnim.SetTrigger("in");
+        PlaneAnim.SetTrigger("in");
+    }
+
+    public void StartGame() {
+        PlaneAnim.SetTrigger("out");
+        PlaneAnim.SetTrigger("out");
+
+        Invoke("Drop", 2);
+        
+
+    }
+
+    public void Drop() {
+        SoldierAnim.SetTrigger("in");
+        ClosetAnim.SetTrigger("in");
+    }
+
+    public void EndGame() {
+        SoldierAnim.SetTrigger("out");
+        ClosetAnim.SetTrigger("out");
     }
 
     private void DressChanged() {

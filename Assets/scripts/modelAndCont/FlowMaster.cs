@@ -48,6 +48,7 @@ public class FlowMaster : MonoBehaviour {
 
                     break;
                 case GameStates.MissionBrief:
+                    SoldierViewRef.PlayBrief();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(true);
                     GameCanvasRef.gameObject.SetActive(false);
@@ -55,13 +56,14 @@ public class FlowMaster : MonoBehaviour {
                     break;
                 case GameStates.Game:
                     GameplayMasterRef.InitMission();
+                    SoldierViewRef.StartGame();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(true);
 
                     break;
                 case GameStates.Conclusion:
-                    GameplayMasterRef.EndMission();
+                    SoldierViewRef.EndGame();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(false);
