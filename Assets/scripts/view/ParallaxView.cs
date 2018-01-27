@@ -98,18 +98,14 @@ public class ParallaxView : MonoBehaviour
 
     public void Init()
     {
-        GameplayMasterRef.EStartLevel += Play;
     }
 
-    private void Play(bool isStart)
+    public void Play()
     {
-        if (isStart)
+        isStarted = true;
+        for (var i = 0; i < ParallaxContainers.Length; i++)
         {
-            isStarted = true;
-            for (var i = 0; i < ParallaxContainers.Length; i++)
-            {
-                ParallaxContainers[i].TimeUntilNextSpwan = ParallaxContainers[i].SpawnSpeed;
-            }
+            ParallaxContainers[i].TimeUntilNextSpwan = ParallaxContainers[i].SpawnSpeed;
         }
     }
 }

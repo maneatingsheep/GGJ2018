@@ -61,6 +61,8 @@ public class FlowMaster : MonoBehaviour {
                 case GameStates.Game:
                     GameplayMasterRef.InitMission();
                     SoldierViewRef.StartGame();
+                    TimerViewRef.Play();
+                    ParallaxViewRef.Play();
                     TitleCanvasRef.gameObject.SetActive(false);
                     MissionCanvasRef.gameObject.SetActive(false);
                     GameCanvasRef.gameObject.SetActive(true);

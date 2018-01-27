@@ -23,21 +23,13 @@ public class TimerView : MonoBehaviour {
     
     public void Init()
     {
-        GameplayMasterRef.EStartLevel += Play;
         gameObject.SetActive(false);
     }
 
-    private void Play(bool isStart)
+    public void Play()
     {
-        if (isStart)
-        {
-            TimeLeft = 10 - DelayBeforShow;
-            Invoke("ReduceTimer", DelayBeforShow);
-        }
-        else
-        {
-            gameObject.SetActive(false);
-        }
+        TimeLeft = 10 - DelayBeforShow;
+        Invoke("ReduceTimer", DelayBeforShow);
     }
 
     private void ReduceTimer()
