@@ -87,7 +87,7 @@ public class FlowMaster : MonoBehaviour {
 
     public void StartMission() {
         State = GameStates.Game;
-        //Invoke("EndMission", 10);
+        Invoke("EndMission", 10);
     }
 
     public void EndMission() {
