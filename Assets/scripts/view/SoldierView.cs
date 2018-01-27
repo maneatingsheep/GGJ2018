@@ -28,7 +28,6 @@ public class SoldierView : MonoBehaviour {
 
         Invoke("Drop", 2);
         
-
     }
 
     public void Drop() {
