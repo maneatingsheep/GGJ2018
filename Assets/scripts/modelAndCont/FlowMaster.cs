@@ -94,6 +94,7 @@ public class FlowMaster : MonoBehaviour {
 
     public void EndMission() {
         State = GameStates.Conclusion;
+        GameplayMasterRef.CurrentMission = (GameplayMasterRef.CurrentMission + 1) % GameplayMasterRef.Missions.Length;
     }
 
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoldierView : MonoBehaviour {
 
@@ -13,11 +14,14 @@ public class SoldierView : MonoBehaviour {
     public Animator ClosetAnim;
     public Animator PlaneAnim;
 
+    public Text BriefText;
+
     public void Init() {
         GameplayMasterRef.EDressChanged += DressChanged;
     }
 
     public void PlayBrief() {
+        BriefText.text = "Mission Brief: " + GameplayMasterRef.Missions[GameplayMasterRef.CurrentMission].MissionText;
         PlaneAnim.SetTrigger("in");
         PlaneAnim.SetTrigger("in");
     }

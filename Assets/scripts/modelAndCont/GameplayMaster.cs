@@ -10,6 +10,10 @@ public class GameplayMaster : MonoBehaviour {
     public List<List<int>> CurrentMissionDressSet;
     public List<int> CurrentIndexSet; //the right one is at 0
 
+    public Mission[] Missions;
+
+    public int CurrentMission;
+
     //public delegate void DressChengedDel();
     public event Action EDressChanged;
     
