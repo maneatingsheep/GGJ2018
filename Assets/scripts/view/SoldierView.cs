@@ -14,9 +14,11 @@ public class SoldierView : MonoBehaviour {
     public Animator ClosetAnim;
     public Animator PlaneAnim;
 
-    public GameObject ConclusionGfx;
+    public SpriteRenderer ConclusionGfx;
+    public GameObject ConclusionScreen;
 
     public Text BriefText;
+    public Text PostText;
 
     public void Init() {
         GameplayMasterRef.EDressChanged += DressChanged;
@@ -24,7 +26,8 @@ public class SoldierView : MonoBehaviour {
 
     public void PlayBrief() {
         
-        BriefText.text = "Mission Brief: " + GameplayMasterRef.Missions[GameplayMasterRef.CurrentMission].MissionText;
+        BriefText.text = GameplayMasterRef.Missions[GameplayMasterRef.CurrentMission].MissionText;
+        PostText.text = GameplayMasterRef.Missions[GameplayMasterRef.CurrentMission].MissionFinalText;
         PlaneAnim.SetTrigger("in");
         PlaneAnim.SetTrigger("in");
     }
@@ -43,7 +46,7 @@ public class SoldierView : MonoBehaviour {
     }
 
     internal void Reset() {
-        ConclusionGfx.gameObject.SetActive(false);
+        ConclusionScreen.gameObject.SetActive(false);
     }
 
     public void EndGame() {
@@ -51,10 +54,13 @@ public class SoldierView : MonoBehaviour {
         ClosetAnim.SetTrigger("out");
 
         Invoke("ShowConclusion", 4);
+
+        ConclusionGfx.sprite = GameplayMasterRef.Missions[GameplayMasterRef.CurrentMission].MissionConcSprite;
     }
 
     public void ShowConclusion() {
-        ConclusionGfx.gameObject.SetActive(true);
+        ConclusionScreen.gameObject.SetActive(true);
+
     }
 
     private void DressChanged() {
