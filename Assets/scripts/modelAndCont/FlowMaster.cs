@@ -80,7 +80,7 @@ public class FlowMaster : MonoBehaviour {
                     MusicPlayer.clip = MusicGame;
                     MusicPlayer.Play();
 
-                    Invoke("EndMission", 10);
+                    Invoke("EndMission", 23);
                     break;
                 case GameStates.Conclusion:
                     SoldierViewRef.EndGame();

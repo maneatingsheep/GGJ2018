@@ -28,7 +28,7 @@ public class TimerView : MonoBehaviour {
 
     public void Play()
     {
-        TimeLeft = 10 - DelayBeforShow;
+        TimeLeft = 23 - DelayBeforShow;
         Invoke("ReduceTimer", DelayBeforShow);
     }
 
